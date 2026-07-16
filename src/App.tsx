@@ -22,7 +22,7 @@ const PROJECTS: Project[] = [
     id: 1,
     tag: 'Published Product',
     year: '2026',
-    title: 'Pomodoro Focus Pro — Chrome Extension',
+    title: 'Pomodoro Focus Pro | Chrome Extension',
     subtitle: 'Manifest V3 productivity extension published on the Chrome Web Store',
     problem:
       'Conventional timer extensions rely on the popup to keep time, so the cycle stops or falls out of sync as soon as the user closes the window, losing notifications and focus continuity.',
@@ -35,13 +35,13 @@ const PROJECTS: Project[] = [
       'Dynamic toolbar icon reflecting the cycle state',
     ],
     tech: ['JavaScript', 'HTML', 'CSS', 'Chrome Extensions API (Manifest V3)'],
-    image: 'photo-1587440871875-191322ee64b0',
+    image: '/pomodoro.png',
   },
   {
     id: 2,
     tag: 'Web Development',
     year: '2026',
-    title: 'Fierro Mateco — Corporate Landing Page',
+    title: 'Fierro Mateco | Corporate Landing Page',
     subtitle: 'Responsive, conversion-oriented site for an aluminum profile distributor',
     problem:
       'An aluminum profile distribution company had no web presence: potential customers couldn\'t check the catalog, branches, or contact the company beyond word of mouth and direct calls.',
@@ -54,13 +54,13 @@ const PROJECTS: Project[] = [
       'Ongoing development with iterative improvements',
     ],
     tech: ['HTML', 'CSS', 'JavaScript', 'React', 'GitHub', 'Vercel'],
-    image: 'photo-1521791136064-7986c2920216',
+    image: '/fierro_mateco.png',
   },
   {
     id: 3,
     tag: 'Capstone Project — Project Lead',
     year: '2026',
-    title: 'Green CUT — E-waste Management System',
+    title: 'Green CUT | E-waste Management System',
     subtitle: 'Capstone project: data traceability for a circular-economy lab',
     problem:
       'E-waste management at the university center lacked a traceability system: there was no structured way to record impact metrics or classify components during diagnosis and disassembly.',
@@ -79,7 +79,7 @@ const PROJECTS: Project[] = [
     id: 4,
     tag: 'Process Digitalization',
     year: '2024',
-    title: 'Grupo Modelo — Product Loading Digitalization',
+    title: 'Grupo Modelo | Product Loading Digitalization',
     subtitle: 'Web application to digitalize the loading process at a bottling plant',
     problem:
       'The product loading process at a bottling plant was recorded manually, resulting in slow data capture prone to operational errors.',
@@ -443,6 +443,21 @@ function Hero() {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [expanded, setExpanded] = useState(false)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [maxHeight, setMaxHeight] = useState(0)
+
+  useEffect(() => {
+    const el = contentRef.current
+    if (!el) return
+    if (!expanded) {
+      setMaxHeight(0)
+      return
+    }
+    setMaxHeight(el.scrollHeight)
+    const observer = new ResizeObserver(() => setMaxHeight(el.scrollHeight))
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [expanded])
 
   return (
     <article
@@ -500,99 +515,111 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
       </div>
 
-      {/* Expanded content */}
-      {expanded && (
-        <div className="mt-10 ml-0 md:ml-13 lg:ml-16 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Left: text */}
-          <div className="lg:col-span-3 space-y-8">
-            <div>
-              <h4
-                className="text-xs tracking-widest uppercase mb-3"
-                style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
-              >
-                The Problem
-              </h4>
-              <p
-                className="text-sm md:text-base leading-relaxed"
-                style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
-              >
-                {project.problem}
-              </p>
-            </div>
-
-            <div>
-              <h4
-                className="text-xs tracking-widest uppercase mb-3"
-                style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
-              >
-                The Solution
-              </h4>
-              <p
-                className="text-sm md:text-base leading-relaxed"
-                style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
-              >
-                {project.solution}
-              </p>
-            </div>
-
-            {/* Tech stack */}
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs px-3 py-1"
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    color: '#18181B',
-                    border: '1px solid rgba(24,24,27,0.12)',
-                    backgroundColor: 'rgba(24,24,27,0.03)',
-                  }}
+      {/* Expanded content — animated unfold via measured max-height */}
+      <div
+        className="overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out"
+        style={{
+          maxHeight,
+          opacity: expanded ? 1 : 0,
+        }}
+      >
+        <div ref={contentRef}>
+          <div className="mt-10 ml-0 md:ml-13 lg:ml-16 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+            {/* Left: text */}
+            <div className="lg:col-span-3 space-y-8">
+              <div>
+                <h4
+                  className="text-xs tracking-widest uppercase mb-3"
+                  style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
                 >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
+                  The Problem
+                </h4>
+                <p
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
+                >
+                  {project.problem}
+                </p>
+              </div>
 
-          {/* Right: results */}
-          <div className="lg:col-span-2">
-            <h4
-              className="text-xs tracking-widest uppercase mb-4"
-              style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
-            >
-              Results
-            </h4>
-            <ul className="space-y-3">
-              {project.results.map((r, i) => (
-                <li key={i} className="flex items-start gap-3">
+              <div>
+                <h4
+                  className="text-xs tracking-widest uppercase mb-3"
+                  style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
+                >
+                  The Solution
+                </h4>
+                <p
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
+                >
+                  {project.solution}
+                </p>
+              </div>
+
+              {/* Tech stack */}
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t) => (
                   <span
-                    className="shrink-0 mt-2 w-1 h-1 rounded-full"
-                    style={{ backgroundColor: '#ff1731' }}
-                  />
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
+                    key={t}
+                    className="text-xs px-3 py-1"
+                    style={{
+                      fontFamily: 'DM Sans, sans-serif',
+                      color: '#18181B',
+                      border: '1px solid rgba(24,24,27,0.12)',
+                      backgroundColor: 'rgba(24,24,27,0.03)',
+                    }}
                   >
-                    {r}
-                  </p>
-                </li>
-              ))}
-            </ul>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-            {/* Image */}
-            <div
-              className="mt-6 aspect-video overflow-hidden"
-              style={{ backgroundColor: '#E4E4E7' }}
-            >
-              <img
-                src={`https://images.unsplash.com/${project.image}?w=600&h=340&fit=crop&auto=format`}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
+            {/* Right: results */}
+            <div className="lg:col-span-2">
+              <h4
+                className="text-xs tracking-widest uppercase mb-4"
+                style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
+              >
+                Results
+              </h4>
+              <ul className="space-y-3">
+                {project.results.map((r, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span
+                      className="shrink-0 mt-2 w-1 h-1 rounded-full"
+                      style={{ backgroundColor: '#ff1731' }}
+                    />
+                    <p
+                      className="text-sm leading-relaxed"
+                      style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
+                    >
+                      {r}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Image */}
+              <div
+                className="mt-6 aspect-video overflow-hidden"
+                style={{ backgroundColor: '#E4E4E7' }}
+              >
+                <img
+                  src={
+                    project.image.startsWith('photo-')
+                      ? `https://images.unsplash.com/${project.image}?w=600&h=340&fit=crop&auto=format`
+                      : project.image
+                  }
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </article>
   )
 }
