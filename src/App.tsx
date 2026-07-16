@@ -143,7 +143,7 @@ function Nav() {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e0102a')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff1731')}
             >
-              Hablemos
+              Let's Talk
             </a>
           </nav>
 
