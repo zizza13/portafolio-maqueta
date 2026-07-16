@@ -13,6 +13,8 @@ interface Project {
   results: string[]
   tech: string[]
   image: string
+  link?: string
+  linkLabel?: string
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -36,6 +38,8 @@ const PROJECTS: Project[] = [
     ],
     tech: ['JavaScript', 'HTML', 'CSS', 'Chrome Extensions API (Manifest V3)'],
     image: '/pomodoro.png',
+    link: 'https://chromewebstore.google.com/detail/pomodoro-focus-pro/cplgofhaeomhmegoiolefancgajicmof',
+    linkLabel: 'Get it on the Chrome Web Store →',
   },
   {
     id: 2,
@@ -55,6 +59,8 @@ const PROJECTS: Project[] = [
     ],
     tech: ['HTML', 'CSS', 'JavaScript', 'React', 'GitHub', 'Vercel'],
     image: '/fierro_mateco.png',
+    link: 'https://propuesta-mateco.vercel.app',
+    linkLabel: 'View Live Demo →',
   },
   {
     id: 3,
@@ -514,11 +520,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       setMaxHeight(0)
       return
     }
-    setMaxHeight(el.scrollHeight)
-    const observer = new ResizeObserver(() => setMaxHeight(el.scrollHeight))
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setMaxHeight(contentRef.current.scrollHeight + 80)
+      }
+    }
+    updateHeight()
+    const observer = new ResizeObserver(updateHeight)
     observer.observe(el)
     return () => observer.disconnect()
-  }, [expanded])
+  }, [expanded, project])
+
 
   return (
     <article
@@ -580,7 +592,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div
         className="overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out"
         style={{
-          maxHeight,
+          maxHeight: expanded ? `${maxHeight}px` : '0px',
           opacity: expanded ? 1 : 0,
         }}
       >
@@ -635,6 +647,33 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   </span>
                 ))}
               </div>
+
+              {/* Live link, when available */}
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-2 text-xs px-3 py-1.5 w-fit transition-all duration-200"
+                  style={{
+                    fontFamily: 'DM Sans, sans-serif',
+                    color: '#ff1731',
+                    border: '1px solid rgba(255,23,49,0.3)',
+                    backgroundColor: 'rgba(255,23,49,0.06)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255,23,49,0.12)'
+                    e.currentTarget.style.borderColor = 'rgba(255,23,49,0.55)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255,23,49,0.06)'
+                    e.currentTarget.style.borderColor = 'rgba(255,23,49,0.3)'
+                  }}
+                >
+                  {project.linkLabel || 'Visit Live Website →'}
+                </a>
+              )}
             </div>
 
             {/* Right: results */}
