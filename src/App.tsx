@@ -111,7 +111,6 @@ function scrollToSection(id: string, e: React.MouseEvent) {
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -126,8 +125,8 @@ function Nav() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
-      {/* Pill container */}
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-5 px-3">
+      {/* Pill container — same nav on every screen size, just scaled down for narrow widths */}
       <div
         className="transition-all duration-300 w-fit"
         style={{
@@ -138,95 +137,36 @@ function Nav() {
           boxShadow: scrolled ? '0 4px 24px rgba(24,24,27,0.07)' : '0 2px 12px rgba(24,24,27,0.04)',
         }}
       >
-        <div className="h-13 px-5 flex items-center justify-center relative">
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={(e) => scrollToSection(l.href.slice(1), e)}
-                className="text-sm transition-colors duration-200"
-                style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#18181B')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = '#A1A1AA')}
-              >
-                {l.label}
-              </a>
-            ))}
+        <nav className="h-11 sm:h-12 md:h-13 px-3 sm:px-4 md:px-5 flex items-center gap-2 sm:gap-4 md:gap-6">
+          {links.map((l) => (
             <a
-              href="mailto:ctn0213@outlook.com"
-              className="text-sm px-4 py-1.5 transition-all duration-200"
-              style={{
-                backgroundColor: '#ff1731',
-                color: '#fff',
-                fontFamily: 'DM Sans, sans-serif',
-                fontWeight: 500,
-                borderRadius: '9999px',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e0102a')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff1731')}
+              key={l.href}
+              href={l.href}
+              onClick={(e) => scrollToSection(l.href.slice(1), e)}
+              className="text-[11px] sm:text-xs md:text-sm whitespace-nowrap transition-colors duration-200"
+              style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#18181B')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#A1A1AA')}
             >
-              Let's Talk
+              {l.label}
             </a>
-          </nav>
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-1 absolute right-4"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+          ))}
+          <a
+            href="mailto:ctn0213@outlook.com"
+            className="text-[11px] sm:text-xs md:text-sm whitespace-nowrap px-2.5 py-1 sm:px-3 md:px-4 md:py-1.5 transition-all duration-200"
+            style={{
+              backgroundColor: '#ff1731',
+              color: '#fff',
+              fontFamily: 'DM Sans, sans-serif',
+              fontWeight: 500,
+              borderRadius: '9999px',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e0102a')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff1731')}
           >
-            <span
-              className="block w-5 h-px transition-all duration-200"
-              style={{ backgroundColor: '#18181B', transform: menuOpen ? 'translateY(5px) rotate(45deg)' : '' }}
-            />
-            <span
-              className="block w-5 h-px transition-all duration-200"
-              style={{ backgroundColor: '#18181B', opacity: menuOpen ? 0 : 1 }}
-            />
-            <span
-              className="block w-5 h-px transition-all duration-200"
-              style={{ backgroundColor: '#18181B', transform: menuOpen ? 'translateY(-5px) rotate(-45deg)' : '' }}
-            />
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div
-            className="md:hidden px-5 pb-4 pt-1 flex flex-col gap-3"
-            style={{ borderTop: '1px solid rgba(24,24,27,0.07)' }}
-          >
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-sm py-1"
-                style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
-                onClick={(e) => {
-                  scrollToSection(l.href.slice(1), e)
-                  setMenuOpen(false)
-                }}
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="mailto:ctn0213@outlook.com"
-              className="text-sm px-4 py-2 text-center mt-1"
-              style={{
-                backgroundColor: '#ff1731',
-                color: '#fff',
-                fontFamily: 'DM Sans, sans-serif',
-                fontWeight: 500,
-                borderRadius: '9999px',
-              }}
-            >
-              Let's Talk
-            </a>
-          </div>
-        )}
+            Let's Talk
+          </a>
+        </nav>
       </div>
     </header>
   )
