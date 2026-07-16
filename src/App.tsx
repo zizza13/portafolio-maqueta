@@ -99,10 +99,15 @@ const SKILLS = [
   { category: 'Languages & Development', items: ['Python', 'JavaScript', 'HTML', 'CSS', 'Node.js', 'Express.js', 'React.js'] },
   { category: 'Databases', items: ['MariaDB', 'MySQL', 'PostgreSQL', 'MongoDB'] },
   { category: 'Tools', items: ['Git', 'GitHub', 'GitLab', 'Docker', 'Power BI'] },
-  { category: 'Areas of Interest', items: ['Cloud Computing', 'APIs', 'Machine Learning', 'Automation'] },
+  { category: 'Areas of Interest', items: ['Cloud Computing', 'APIs', 'Machine Learning', 'Automation', 'Problem Solving'] },
 ]
 
 // ─── Components ───────────────────────────────────────────────────────────────
+
+function scrollToSection(id: string, e: React.MouseEvent) {
+  e.preventDefault()
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -140,6 +145,7 @@ function Nav() {
               <a
                 key={l.href}
                 href={l.href}
+                onClick={(e) => scrollToSection(l.href.slice(1), e)}
                 className="text-sm transition-colors duration-200"
                 style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#18181B')}
@@ -198,7 +204,10 @@ function Nav() {
                 href={l.href}
                 className="text-sm py-1"
                 style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif' }}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  scrollToSection(l.href.slice(1), e)
+                  setMenuOpen(false)
+                }}
               >
                 {l.label}
               </a>
@@ -393,6 +402,7 @@ function Hero() {
             <div className="flex items-center gap-6">
               <a
                 href="#projects"
+                onClick={(e) => scrollToSection('projects', e)}
                 className="text-sm px-6 py-3 transition-all duration-200 inline-block"
                 style={{ backgroundColor: '#18181B', color: '#F4F4F5', fontFamily: 'DM Sans, sans-serif', fontWeight: 500, borderRadius: '9999px' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ff1731')}
@@ -402,6 +412,7 @@ function Hero() {
               </a>
               <a
                 href="#contact"
+                onClick={(e) => scrollToSection('contact', e)}
                 className="text-sm transition-colors duration-200"
                 style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif', textDecoration: 'underline', textUnderlineOffset: '4px', borderRadius: '9999px' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#18181B')}
