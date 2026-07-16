@@ -173,8 +173,129 @@ function Nav() {
 }
 
 function MountainsBg() {
+  const svgRef = useRef<SVGSVGElement>(null)
+  const wave3Ref = useRef<SVGPathElement>(null)
+  const gradientRef = useRef<SVGRadialGradientElement>(null)
+  const midStopRef = useRef<SVGStopElement>(null)
+  const blurRef = useRef<SVGFEGaussianBlurElement>(null)
+
+  const samplesRef = useRef<{ x: number; y: number }[]>([])
+  const mouseRef = useRef({ x: 0, y: 0, active: false })
+  const stateRef = useRef({ proximity: 0, hotX: 750, hotY: 650 })
+  const rafRef = useRef<number | null>(null)
+
+  // Sample the red wave's static path once — its `d` never changes, so no need to resample.
+  useEffect(() => {
+    const path = wave3Ref.current
+    if (!path) return
+    const len = path.getTotalLength()
+    const N = 60
+    const samples = Array.from({ length: N + 1 }, (_, i) => path.getPointAtLength((i / N) * len))
+    samplesRef.current = samples
+    const mid = samples[Math.floor(N / 2)]
+    stateRef.current.hotX = mid.x
+    stateRef.current.hotY = mid.y
+  }, [])
+
+  // Mouse-proximity "energy" glow: nearest-point tracking drives a radial gradient hotspot.
+  useEffect(() => {
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!isFinePointer || reducedMotion) return
+
+    const svg = svgRef.current
+    if (!svg) return
+    const MAX_RADIUS = 220
+
+    function toSvgPoint(clientX: number, clientY: number) {
+      const ctm = svg!.getScreenCTM()
+      if (!ctm) return null
+      const pt = svg!.createSVGPoint()
+      pt.x = clientX
+      pt.y = clientY
+      return pt.matrixTransform(ctm.inverse())
+    }
+
+    function ensureLoop() {
+      if (rafRef.current == null) rafRef.current = requestAnimationFrame(tick)
+    }
+
+    function tick() {
+      const s = stateRef.current
+      let targetProximity = 0
+      let targetX = s.hotX
+      let targetY = s.hotY
+
+      if (mouseRef.current.active) {
+        const p = toSvgPoint(mouseRef.current.x, mouseRef.current.y)
+        if (p) {
+          let best = Infinity
+          let bestPt = samplesRef.current[0]
+          for (const sp of samplesRef.current) {
+            const dx = p.x - sp.x
+            const dy = p.y - sp.y
+            const d2 = dx * dx + dy * dy
+            if (d2 < best) {
+              best = d2
+              bestPt = sp
+            }
+          }
+          const dist = Math.sqrt(best)
+          targetProximity = Math.max(0, 1 - dist / MAX_RADIUS) ** 2
+          targetX = bestPt.x
+          targetY = bestPt.y
+        }
+      }
+
+      // Damped lerp: smoothly approaches the target AND smoothly fades back to baseline on mouse-leave.
+      const k = 0.12
+      s.proximity += (targetProximity - s.proximity) * k
+      s.hotX += (targetX - s.hotX) * k
+      s.hotY += (targetY - s.hotY) * k
+
+      gradientRef.current?.setAttribute('cx', String(s.hotX))
+      gradientRef.current?.setAttribute('cy', String(s.hotY))
+      gradientRef.current?.setAttribute('r', String(600 - s.proximity * 450))
+      midStopRef.current?.setAttribute('stop-opacity', String(0.55 + s.proximity * 0.45))
+      blurRef.current?.setAttribute('stdDeviation', String(5 + s.proximity * 3))
+      wave3Ref.current?.setAttribute('stroke-width', String(3 + s.proximity * 1.5))
+
+      const settled = !mouseRef.current.active && s.proximity < 0.001 && targetProximity < 0.001
+      if (settled) {
+        rafRef.current = null
+        return
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    const onMove = (e: PointerEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY, active: true }
+      ensureLoop()
+    }
+    const onLeave = () => {
+      mouseRef.current.active = false
+      ensureLoop()
+    }
+    const onVisibility = () => {
+      if (document.hidden) onLeave()
+    }
+
+    window.addEventListener('pointermove', onMove, { passive: true })
+    window.addEventListener('pointerleave', onLeave)
+    window.addEventListener('blur', onLeave)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('pointerleave', onLeave)
+      window.removeEventListener('blur', onLeave)
+      document.removeEventListener('visibilitychange', onVisibility)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
   return (
     <svg
+      ref={svgRef}
       className="absolute inset-0 w-full h-full"
       viewBox="0 0 1440 900"
       preserveAspectRatio="xMidYMid slice"
@@ -182,48 +303,36 @@ function MountainsBg() {
       aria-hidden="true"
     >
       <style>{`
-        @keyframes float-w1 {
-          0% { transform: translateY(0px) scaleY(1); }
-          100% { transform: translateY(-12px) scaleY(1.03); }
+        @keyframes drift-w1 { 0% { transform: translateX(-14px); } 100% { transform: translateX(14px); } }
+        @keyframes drift-w2 { 0% { transform: translateX(12px); } 100% { transform: translateX(-12px); } }
+        @keyframes drift-w3 { 0% { transform: translateX(-10px); } 100% { transform: translateX(10px); } }
+        @keyframes drift-w4 { 0% { transform: translateX(14px); } 100% { transform: translateX(-14px); } }
+        @keyframes drift-w5 { 0% { transform: translateX(-10px); } 100% { transform: translateX(10px); } }
+        .animate-w1 { animation: drift-w1 20s ease-in-out infinite alternate; transform-origin: center; }
+        .animate-w2 { animation: drift-w2 26s ease-in-out infinite alternate; transform-origin: center; }
+        .animate-w3 { animation: drift-w3 32s ease-in-out infinite alternate; transform-origin: center; }
+        .animate-w4 { animation: drift-w4 38s ease-in-out infinite alternate; transform-origin: center; }
+        .animate-w5 { animation: drift-w5 44s ease-in-out infinite alternate; transform-origin: center; }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-w1, .animate-w2, .animate-w3, .animate-w4, .animate-w5 { animation: none; }
         }
-        @keyframes float-w2 {
-          0% { transform: translateY(0px) scaleY(1.02); }
-          100% { transform: translateY(8px) scaleY(0.98); }
-        }
-        @keyframes float-w3 {
-          0% { transform: translateY(0px) translateX(0px); }
-          100% { transform: translateY(-18px) translateX(10px); }
-        }
-        @keyframes float-w4 {
-          0% { transform: translateY(0px) translateX(0px); }
-          100% { transform: translateY(12px) translateX(-10px); }
-        }
-        @keyframes float-w5 {
-          0% { transform: translateY(0px) scaleY(0.99); }
-          100% { transform: translateY(-8px) scaleY(1.01); }
-        }
-        .animate-w1 { animation: float-w1 12s ease-in-out infinite alternate; transform-origin: center; }
-        .animate-w2 { animation: float-w2 16s ease-in-out infinite alternate; transform-origin: center; }
-        .animate-w3 { animation: float-w3 10s ease-in-out infinite alternate; transform-origin: center; }
-        .animate-w4 { animation: float-w4 18s ease-in-out infinite alternate; transform-origin: center; }
-        .animate-w5 { animation: float-w5 14s ease-in-out infinite alternate; transform-origin: center; }
       `}</style>
 
       <defs>
         {/* Glow effect for red wave */}
         <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feGaussianBlur ref={blurRef} stdDeviation="5" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
 
-        <linearGradient id="wave-red" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#ff1731" stopOpacity="0.05" />
-          <stop offset="50%" stopColor="#ff1731" stopOpacity="0.8" />
+        <radialGradient id="wave-red" ref={gradientRef} gradientUnits="userSpaceOnUse" cx="750" cy="650" r="600">
+          <stop offset="0%" stopColor="#ff1731" stopOpacity="1" />
+          <stop ref={midStopRef} offset="40%" stopColor="#ff1731" stopOpacity="0.55" />
           <stop offset="100%" stopColor="#ff1731" stopOpacity="0.05" />
-        </linearGradient>
+        </radialGradient>
         <linearGradient id="wave-dark" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#18181B" stopOpacity="0.05" />
           <stop offset="50%" stopColor="#18181B" stopOpacity="0.5" />
@@ -259,6 +368,7 @@ function MountainsBg() {
       />
       {/* Wave 3 (Accent Red with Glow) */}
       <path
+        ref={wave3Ref}
         d="M -50,200 C 300,820 650,700 950,610 C 1200,540 1350,410 1550,720"
         fill="none"
         stroke="url(#wave-red)"
