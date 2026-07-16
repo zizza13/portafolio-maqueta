@@ -196,7 +196,7 @@ function Nav() {
                 borderRadius: '9999px',
               }}
             >
-              Hablemos
+              Let's Talk
             </a>
           </div>
         )}
@@ -401,7 +401,7 @@ function Hero() {
           style={{ borderTop: '1px solid rgba(24,24,27,0.08)' }}
         >
           {[
-            { num: '7+', label: 'Años de experiencia' },
+            { num: '10+', label: 'Años de experiencia' },
             { num: '34', label: 'Proyectos entregados' },
             { num: '$12M+', label: 'Valor generado (USD)' },
           ].map((m) => (
