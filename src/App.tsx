@@ -931,16 +931,17 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer
-      className="px-6 lg:px-10 max-w-6xl mx-auto py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
-      style={{ borderTop: '1px solid rgba(24,24,27,0.08)' }}
-    >
-      <p className="text-xs" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
-        © 2026 César Terrazas Nava
-      </p>
-      <p className="text-xs" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
-        Zapopan, Jalisco · Available remotely
-      </p>
+    <footer style={{ borderTop: '1px solid #ff1731' }}>
+      <div
+        className="px-6 lg:px-10 max-w-6xl mx-auto py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+      >
+        <p className="text-xs" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
+          © 2026 César Terrazas Nava
+        </p>
+        <p className="text-xs" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
+          Zapopan, Jalisco · Available remotely
+        </p>
+      </div>
     </footer>
   )
 }
