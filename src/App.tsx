@@ -628,7 +628,7 @@ function About() {
             className="text-3xl md:text-4xl font-bold mb-8"
             style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
           >
-            Ingeniero de Software e Inteligencia de Datos
+            Computer Science Engineer Specialized in Data Intelligence
           </h2>
 
           <div className="space-y-4 mb-10">

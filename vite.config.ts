@@ -5,11 +5,13 @@ import path from 'node:path'
 
 import siteConfiguration from './.figma/make/site.json'
 
+const base = process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/'
+
 const isFigmaSandbox = process.env.FIGMA === '1' || process.env.FIGMA === 'true'
 
-// Vite config — https://vitejs.dev/config/
+// Vite config — https://vitejs.dev/config/ (forces config reload - updated title)
 export default defineConfig({
-  base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+  base,
   plugins: [
     react(),
     tailwindcss(),
@@ -78,8 +80,14 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
 
   const title = config.title ?? "Figma Make App"
   const description = config.description ?? ''
-  const favicon = config.icons?.icon ?? ''
-  const socialImage = config.openGraph?.image ?? ''
+  let favicon = config.icons?.icon ?? ''
+  if (favicon && favicon.startsWith('/')) {
+    favicon = base + favicon.slice(1)
+  }
+  let socialImage = config.openGraph?.image ?? ''
+  if (socialImage && socialImage.startsWith('/')) {
+    socialImage = base + socialImage.slice(1)
+  }
   const language = sanitizeHtmlValue(config.language) || 'en'
   const googleAnalyticsId = sanitizeHtmlValue(config.analytics?.googleAnalyticsId)
   const headStart = config.customScripts?.headStart ?? ''
