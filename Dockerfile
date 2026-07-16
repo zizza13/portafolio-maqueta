@@ -1,7 +1,7 @@
 FROM node:22.12-slim AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install && chmod -R +x node_modules/.bin
 COPY . .
 RUN npm run build
 
