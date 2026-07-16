@@ -357,7 +357,7 @@ function Hero() {
       <MountainsBg />
 
       {/* Content — sits above mountains */}
-      <div className="relative z-10 pb-20 pt-36 px-6 lg:px-10 max-w-6xl mx-auto w-full">
+      <div className="relative z-10 pb-16 pt-28 md:pb-20 md:pt-36 px-6 md:px-8 lg:px-10 max-w-6xl mx-auto w-full">
         {/* Status pill */}
         <div className="flex items-center gap-2 mb-14">
           <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: '#ff1731' }} />
@@ -426,7 +426,7 @@ function Hero() {
 
         {/* Bottom row: metrics */}
         <div
-          className="mt-16 pt-8 grid grid-cols-3 gap-4"
+          className="mt-10 md:mt-16 pt-8 grid grid-cols-3 gap-3 sm:gap-4"
           style={{ borderTop: '1px solid rgba(24,24,27,0.08)' }}
         >
           {[
@@ -472,7 +472,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <article
-      className="py-12 lg:py-16 cursor-pointer group"
+      className="py-8 md:py-12 lg:py-16 cursor-pointer group"
       style={{ borderTop: '1px solid rgba(24,24,27,0.08)' }}
       onClick={() => setExpanded(!expanded)}
     >
@@ -535,9 +535,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         }}
       >
         <div ref={contentRef}>
-          <div className="mt-10 ml-0 md:ml-13 lg:ml-16 grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+          <div className="mt-8 md:mt-10 ml-0 md:ml-13 lg:ml-16 grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
             {/* Left: text */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="md:col-span-3 space-y-6 md:space-y-8">
               <div>
                 <h4
                   className="text-xs tracking-widest uppercase mb-3"
@@ -588,7 +588,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
 
             {/* Right: results */}
-            <div className="lg:col-span-2">
+            <div className="md:col-span-2">
               <h4
                 className="text-xs tracking-widest uppercase mb-4"
                 style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
@@ -637,7 +637,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 function Projects() {
   return (
-    <section id="projects" className="px-6 lg:px-10 max-w-6xl mx-auto py-24">
+    <section id="projects" className="px-6 md:px-8 lg:px-10 max-w-6xl mx-auto py-16 md:py-24">
       <div className="flex items-end justify-between mb-12">
         <div>
           <span
@@ -670,8 +670,8 @@ function Projects() {
 
 function About() {
   return (
-    <section id="profile" className="px-6 lg:px-10 max-w-6xl mx-auto py-24">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+    <section id="profile" className="px-6 md:px-8 lg:px-10 max-w-6xl mx-auto py-16 md:py-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-24">
         {/* Left */}
         <div>
           <span
@@ -807,12 +807,12 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="px-6 lg:px-10 max-w-6xl mx-auto py-24">
+    <section id="contact" className="px-6 md:px-8 lg:px-10 max-w-6xl mx-auto py-16 md:py-24">
       <div
-        className="py-16 px-8 lg:px-16"
+        className="py-10 px-6 md:py-16 md:px-10 lg:px-16"
         style={{ backgroundColor: '#18181B' }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
           {/* Left */}
           <div>
             <span
@@ -944,7 +944,7 @@ function Footer() {
   return (
     <footer style={{ borderTop: '1px solid #ff1731' }}>
       <div
-        className="px-6 lg:px-10 max-w-6xl mx-auto py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        className="px-6 md:px-8 lg:px-10 max-w-6xl mx-auto py-8 md:py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
       >
         <p className="text-xs" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
           © 2026 César Terrazas Nava
