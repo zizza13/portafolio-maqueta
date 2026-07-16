@@ -20,68 +20,86 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     id: 1,
-    tag: 'Arquitectura de Datos',
-    year: '2024',
-    title: 'Pipeline de Inteligencia Predictiva para Retail',
-    subtitle: 'Plataforma de predicción de demanda en tiempo real para cadena de 340 tiendas',
+    tag: 'Published Product',
+    year: '2026',
+    title: 'Pomodoro Focus Pro — Chrome Extension',
+    subtitle: 'Manifest V3 productivity extension published on the Chrome Web Store',
     problem:
-      'Una cadena minorista con 340 puntos de venta operaba con pronósticos de demanda generados manualmente en Excel. El proceso tardaba 72 horas, generaba un sobrestock promedio del 23% y pérdidas mensuales de $1.2M MXN por caducidad de producto.',
+      'Conventional timer extensions rely on the popup to keep time, so the cycle stops or falls out of sync as soon as the user closes the window, losing notifications and focus continuity.',
     solution:
-      'Diseñé e implementé un pipeline de datos con Apache Kafka para ingesta en tiempo real, modelos de ML (XGBoost + LSTM) para predicción de demanda y un dashboard interactivo en Streamlit. La arquitectura procesa 4.2M eventos diarios con latencia sub-segundo.',
+      'I implemented the core timer in a service worker using chrome.alarms, so cycles and notifications run reliably in the background, independent of the popup UI. I added a state-driven dynamic toolbar icon and an integrated to-do list with local persistence, fully client-side with zero data collection.',
     results: [
-      'Reducción del 67% en sobrestock en los primeros 90 días',
-      'Ahorro de $840K MXN mensuales en merma',
-      'Pronósticos generados en 8 minutos vs. 72 horas previas',
-      '94.3% de precisión en predicciones a 7 días',
+      'Published and available on the Chrome Web Store',
+      'Stable Pomodoro cycles even with the popup closed',
+      'Zero data collection: all persistence is local',
+      'Dynamic toolbar icon reflecting the cycle state',
     ],
-    tech: ['Python', 'Apache Kafka', 'XGBoost', 'PostgreSQL', 'Streamlit', 'Docker'],
-    image: 'photo-1551288049-bebda4e38f71',
+    tech: ['JavaScript', 'HTML', 'CSS', 'Chrome Extensions API (Manifest V3)'],
+    image: 'photo-1587440871875-191322ee64b0',
   },
   {
     id: 2,
-    tag: 'Microservicios',
-    year: '2023',
-    title: 'Migración a Arquitectura de Microservicios — Fintech',
-    subtitle: 'Rediseño de sistema monolítico a microservicios para plataforma de pagos',
+    tag: 'Web Development',
+    year: '2026',
+    title: 'Fierro Mateco — Corporate Landing Page',
+    subtitle: 'Responsive, conversion-oriented site for an aluminum profile distributor',
     problem:
-      'Una fintech procesaba $45M USD mensuales sobre un monolito en Python/Django con 8 años de deuda técnica. Cada deployment tardaba 4 horas, los incidentes de producción promediaban 6.5 horas de downtime y escalar para picos de fin de mes requería intervención manual.',
+      'An aluminum profile distribution company had no web presence: potential customers couldn\'t check the catalog, branches, or contact the company beyond word of mouth and direct calls.',
     solution:
-      'Lideré la migración progresiva usando el patrón Strangler Fig: identifiqué 11 bounded contexts, los descompuse en microservicios con FastAPI, implementé comunicación asíncrona vía RabbitMQ y migré la infraestructura a Kubernetes en GCP con autoscaling basado en métricas de negocio.',
+      'I designed and built a responsive, conversion-oriented landing page with sections for services, catalog, branches, and a contact form. I implemented the interface with React and deployed it to production via Vercel.',
     results: [
-      'Tiempo de deployment reducido de 4 horas a 12 minutos',
-      'Disponibilidad del sistema: 99.97% (vs. 98.1% anterior)',
-      'Costo de infraestructura reducido 31% mediante autoscaling',
-      'Cero downtime en los últimos 14 meses consecutivos',
+      'Site live in production (live demo)',
+      'Catalog and branches browsable from any device',
+      'Integrated contact form to capture leads',
+      'Ongoing development with iterative improvements',
     ],
-    tech: ['FastAPI', 'Kubernetes', 'RabbitMQ', 'GCP', 'Terraform', 'Prometheus'],
-    image: 'photo-1558494949-ef010cbdcc31',
+    tech: ['HTML', 'CSS', 'JavaScript', 'React', 'GitHub', 'Vercel'],
+    image: 'photo-1521791136064-7986c2920216',
   },
   {
     id: 3,
-    tag: 'Ingeniería de Datos',
-    year: '2023',
-    title: 'Data Warehouse Unificado — Manufactura',
-    subtitle: 'Centralización de 14 fuentes de datos heterogéneas para planta industrial',
+    tag: 'Capstone Project — Project Lead',
+    year: '2026',
+    title: 'Green CUT — E-waste Management System',
+    subtitle: 'Capstone project: data traceability for a circular-economy lab',
     problem:
-      'Una planta manufacturera operaba con 14 sistemas aislados (ERP, MES, SCADA, Excel, sensores IoT) sin integración. Los reportes de producción se construían manualmente cada semana, tomaban 16 horas de trabajo y contenían errores en el 34% de los casos.',
+      'E-waste management at the university center lacked a traceability system: there was no structured way to record impact metrics or classify components during diagnosis and disassembly.',
     solution:
-      'Construí un Data Warehouse en Snowflake con pipelines de integración en dbt para transformación y Great Expectations para calidad de datos. Conecté los 14 sistemas usando Apache Airflow como orquestador, con conectores personalizados para los sistemas legacy.',
+      'As project lead, I designed and coordinated a circular-economy lab focused on e-waste management and logical hardware diagnosis. I built an automated traceability system ("Control Station") with input validation to record impact metrics and classify components, coordinating a four-person technical team across the disassembly and Clean Zone areas.',
     results: [
-      'Reportes de producción automatizados: de 16h a 15 minutos',
-      'Tasa de error en datos reducida al 0.3% (desde 34%)',
-      'Dashboard ejecutivo con métricas en tiempo real',
-      'ROI del proyecto: 380% en el primer año',
+      'Traceability system (Control Station) in operation',
+      'Four-person technical team coordinated across two areas',
+      'Impact metrics and component classification recorded in a structured way',
+      'Computer Science capstone project (thesis as an intervention project)',
     ],
-    tech: ['Snowflake', 'dbt', 'Apache Airflow', 'Python', 'Great Expectations', 'Tableau'],
-    image: 'photo-1504384308090-c894fdcc538d',
+    tech: ['JavaScript', 'HTML', 'CSS', 'Databases', 'Data validation'],
+    image: 'photo-1611284446314-60a58ac0deb9',
+  },
+  {
+    id: 4,
+    tag: 'Process Digitalization',
+    year: '2024',
+    title: 'Grupo Modelo — Product Loading Digitalization',
+    subtitle: 'Web application to digitalize the loading process at a bottling plant',
+    problem:
+      'The product loading process at a bottling plant was recorded manually, resulting in slow data capture prone to operational errors.',
+    solution:
+      'I digitalized the loading process through a database-driven web application, replacing manual data capture and reducing the associated operational errors.',
+    results: [
+      'Processing time cut by 30–45%',
+      'Manual data capture replaced by a digital workflow',
+      'Operational errors reduced in the loading process',
+    ],
+    tech: ['JavaScript', 'Databases', 'Web development'],
+    image: 'photo-1553413077-190dd305871c',
   },
 ]
 
 const SKILLS = [
-  { category: 'Lenguajes', items: ['Python', 'SQL', 'TypeScript', 'Go', 'Bash'] },
-  { category: 'Datos & ML', items: ['Pandas', 'Scikit-learn', 'XGBoost', 'TensorFlow', 'dbt', 'Spark'] },
-  { category: 'Infraestructura', items: ['Kubernetes', 'Docker', 'Terraform', 'GCP', 'AWS', 'Linux'] },
-  { category: 'Datos & Streaming', items: ['Apache Kafka', 'Airflow', 'Snowflake', 'PostgreSQL', 'Redis'] },
+  { category: 'Languages & Development', items: ['Python', 'JavaScript', 'HTML', 'CSS', 'Node.js', 'Express.js', 'React.js'] },
+  { category: 'Databases', items: ['MariaDB', 'MySQL', 'PostgreSQL', 'MongoDB'] },
+  { category: 'Tools', items: ['Git', 'GitHub', 'GitLab', 'Docker', 'Power BI'] },
+  { category: 'Areas of Interest', items: ['Cloud Computing', 'APIs', 'Machine Learning', 'Automation'] },
 ]
 
 // ─── Components ───────────────────────────────────────────────────────────────
@@ -97,7 +115,7 @@ function Nav() {
   }, [])
 
   const links = [
-    { label: 'Projects', href: '#proyectos' },
+    { label: 'Projects', href: '#projects' },
     { label: 'Profile', href: '#profile' },
     { label: 'Contact me', href: '#contact' },
   ]
@@ -131,7 +149,7 @@ function Nav() {
               </a>
             ))}
             <a
-              href="mailto:cesar@terrazas.dev"
+              href="mailto:ctn0213@outlook.com"
               className="text-sm px-4 py-1.5 transition-all duration-200"
               style={{
                 backgroundColor: '#ff1731',
@@ -151,7 +169,7 @@ function Nav() {
           <button
             className="md:hidden flex flex-col gap-1.5 p-1 absolute right-4"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menú"
+            aria-label="Menu"
           >
             <span
               className="block w-5 h-px transition-all duration-200"
@@ -186,7 +204,7 @@ function Nav() {
               </a>
             ))}
             <a
-              href="mailto:cesar@terrazas.dev"
+              href="mailto:ctn0213@outlook.com"
               className="text-sm px-4 py-2 text-center mt-1"
               style={{
                 backgroundColor: '#ff1731',
@@ -322,7 +340,7 @@ function MountainsBg() {
 function Hero() {
   return (
     <section
-      id="inicio"
+      id="home"
       className="relative min-h-screen flex flex-col justify-end overflow-hidden"
       style={{ backgroundColor: '#F4F4F5' }}
     >
@@ -358,7 +376,7 @@ function Hero() {
               className="text-lg md:text-xl font-medium mb-2"
               style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
             >
-              Computer Science Engineer
+              Computer Science Engineering Student
               <br />Specialized in Data Intelligence
             </p>
             <div className="w-8 h-px mt-4" style={{ backgroundColor: '#ff1731' }} />
@@ -369,7 +387,7 @@ function Hero() {
               className="text-base md:text-lg leading-relaxed mb-8"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              I design scalable systems, logical architectures, and data-driven solutions that transform operational complexity into competitive advantage.
+              Computer Science Engineering student specializing in Data Intelligence, with experience in web development, databases, and process digitalization. Interested in software development, cloud computing, and data.
             </p>
 
             <div className="flex items-center gap-6">
@@ -380,7 +398,7 @@ function Hero() {
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ff1731')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#18181B')}
               >
-                Ver proyectos
+                View projects
               </a>
               <a
                 href="#contact"
@@ -389,7 +407,7 @@ function Hero() {
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#18181B')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = '#A1A1AA')}
               >
-                Contactar
+                Contact
               </a>
             </div>
           </div>
@@ -401,9 +419,9 @@ function Hero() {
           style={{ borderTop: '1px solid rgba(24,24,27,0.08)' }}
         >
           {[
-            { num: '10+', label: 'Años de experiencia' },
-            { num: '34', label: 'Proyectos entregados' },
-            { num: '$12M+', label: 'Valor generado (USD)' },
+            { num: '2026', label: 'Graduation (UDG)' },
+            { num: '4', label: 'Technical projects' },
+            { num: '2', label: 'AWS certifications' },
           ].map((m) => (
             <div key={m.label}>
               <p
@@ -492,7 +510,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 className="text-xs tracking-widest uppercase mb-3"
                 style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
               >
-                El Problema
+                The Problem
               </h4>
               <p
                 className="text-sm md:text-base leading-relaxed"
@@ -507,7 +525,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 className="text-xs tracking-widest uppercase mb-3"
                 style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
               >
-                La Solución
+                The Solution
               </h4>
               <p
                 className="text-sm md:text-base leading-relaxed"
@@ -542,7 +560,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="text-xs tracking-widest uppercase mb-4"
               style={{ color: '#ff1731', fontFamily: 'DM Sans, sans-serif' }}
             >
-              Resultados
+              Results
             </h4>
             <ul className="space-y-3">
               {project.results.map((r, i) => (
@@ -581,24 +599,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 function Projects() {
   return (
-    <section id="proyectos" className="px-6 lg:px-10 max-w-6xl mx-auto py-24">
+    <section id="projects" className="px-6 lg:px-10 max-w-6xl mx-auto py-24">
       <div className="flex items-end justify-between mb-12">
         <div>
           <span
             className="text-xs tracking-widest uppercase block mb-3"
             style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
           >
-            Trabajo seleccionado
+            Selected work
           </span>
           <h2
             className="text-3xl md:text-4xl font-bold"
             style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
           >
-            Casos de Estudio
+            Projects
           </h2>
         </div>
         <span className="text-sm hidden md:block" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
-          Click para expandir
+          Click to expand
         </span>
       </div>
 
@@ -628,7 +646,7 @@ function About() {
             className="text-3xl md:text-4xl font-bold mb-8"
             style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
           >
-            Computer Science Engineer Specialized in Data Intelligence
+            Computer Science Engineering Student Specialized in Data Intelligence
           </h2>
 
           <div className="space-y-4 mb-10">
@@ -636,26 +654,27 @@ function About() {
               className="text-base leading-relaxed"
               style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              Soy un ingeniero especializado en la intersección de la arquitectura de software y
-              la ingeniería de datos. Mi enfoque es construir sistemas que no solo funcionan hoy,
-              sino que escalan con el negocio de mis clientes.
+              I'm a Computer Science Engineering student specializing in Data Intelligence at
+              the University of Guadalajara. I have experience in web development, databases,
+              and process digitalization, and I'm interested in going deeper into software
+              development, cloud computing, and data.
             </p>
             <p
               className="text-base leading-relaxed"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              He trabajado con empresas en retail, fintech y manufactura, transformando procesos
-              manuales y sistemas heredados en infraestructuras de datos modernas y automatizadas.
-              Mi diferenciador: entiendo tanto el código como el negocio.
+              I've applied what I learn to real projects: from a published Chrome extension to
+              an e-waste management capstone project where I led a technical team. I'm a
+              structured problem-solver and a fast learner.
             </p>
           </div>
 
           {/* Timeline */}
           <div className="space-y-6">
             {[
-              { year: '2021–Presente', role: 'Ingeniero Senior de Datos', place: 'Freelance & Consultoría' },
-              { year: '2019–2021', role: 'Arquitecto de Software', place: 'Grupo Empresarial Monterrey' },
-              { year: '2017–2019', role: 'Desarrollador Backend', place: 'Startup Fintech CDMX' },
+              { year: '2022–2026', role: 'Computer Science Engineering', place: 'UDG, Tonalá · Data Intelligence Specialization' },
+              { year: '2024', role: 'Process Digitalization', place: 'Grupo Modelo México' },
+              { year: '2020–2021', role: 'Delivery Route Planning', place: 'GVI, Zapopan' },
             ].map((e) => (
               <div key={e.year} className="flex gap-6">
                 <span
@@ -683,7 +702,7 @@ function About() {
             className="text-xs tracking-widest uppercase block mb-6"
             style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
           >
-            Stack técnico
+            Tech Stack
           </span>
 
           <div className="space-y-8">
@@ -718,7 +737,7 @@ function About() {
           <div className="mt-10 aspect-4/3 overflow-hidden" style={{ backgroundColor: '#E4E4E7' }}>
             <img
               src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&h=450&fit=crop&auto=format"
-              alt="César trabajando"
+              alt="César working"
               className="w-full h-full object-cover"
             />
           </div>
@@ -762,30 +781,30 @@ function Contact() {
               className="text-xs tracking-widest uppercase block mb-6"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
             >
-              Contacto
+              Contact
             </span>
             <h2
               className="text-3xl md:text-4xl font-bold mb-6 text-white"
               style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
             >
-              ¿Tienes un reto que resolver?
+              Have a challenge to solve?
             </h2>
             <p
               className="text-base leading-relaxed mb-10"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              Cuéntame sobre tu proyecto. Respondo en menos de 24 horas.
+              Tell me about your project. I respond within 24 hours.
             </p>
 
             <div className="space-y-4">
               {[
-                { label: 'Email', value: 'cesar@terrazas.dev' },
-                { label: 'LinkedIn', value: 'linkedin.com/in/cesarterrazas' },
-                { label: 'GitHub', value: 'github.com/cesarterrazas' },
+                { label: 'Email', value: 'ctn0213@outlook.com' },
+                { label: 'Phone', value: '+52 33 2237 5389' },
+                { label: 'LinkedIn', value: 'linkedin.com/in/cesar-terrazas-nava' },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-4">
                   <span
-                    className="text-xs w-16"
+                    className="text-xs w-20 shrink-0"
                     style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', textTransform: 'uppercase', letterSpacing: '0.08em' }}
                   >
                     {c.label}
@@ -810,17 +829,17 @@ function Contact() {
                   className="text-2xl font-semibold text-white"
                   style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                 >
-                  Mensaje enviado.
+                  Message sent.
                 </p>
                 <p style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
-                  Te respondo en menos de 24 horas.
+                  I'll get back to you within 24 hours.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {[
-                  { id: 'name', label: 'Nombre', type: 'text', placeholder: 'Tu nombre completo' },
-                  { id: 'email', label: 'Email', type: 'email', placeholder: 'tu@email.com' },
+                  { id: 'name', label: 'Name', type: 'text', placeholder: 'Your full name' },
+                  { id: 'email', label: 'Email', type: 'email', placeholder: 'you@email.com' },
                 ].map((f) => (
                   <div key={f.id}>
                     <label
@@ -850,12 +869,12 @@ function Contact() {
                     className="block text-xs mb-2"
                     style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', textTransform: 'uppercase', letterSpacing: '0.08em' }}
                   >
-                    Mensaje
+                    Message
                   </label>
                   <textarea
                     id="message"
                     rows={4}
-                    placeholder="Cuéntame sobre tu proyecto..."
+                    placeholder="Tell me about your project..."
                     required
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
@@ -872,7 +891,7 @@ function Contact() {
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e0102a')}
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff1731')}
                 >
-                  Enviar mensaje →
+                  Send message →
                 </button>
               </form>
             )}
@@ -893,7 +912,7 @@ function Footer() {
         © 2026 César Terrazas Nava
       </p>
       <p className="text-xs" style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}>
-        Monterrey, México · Disponible remotamente
+        Zapopan, Jalisco · Available remotely
       </p>
     </footer>
   )
