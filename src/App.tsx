@@ -73,7 +73,7 @@ const PROJECTS: Project[] = [
       'Computer Science capstone project (thesis as an intervention project)',
     ],
     tech: ['JavaScript', 'HTML', 'CSS', 'Databases', 'Data validation'],
-    image: 'photo-1611284446314-60a58ac0deb9',
+    image: '/green_cut.png',
   },
   {
     id: 4,
