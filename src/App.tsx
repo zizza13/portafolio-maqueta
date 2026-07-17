@@ -143,13 +143,13 @@ function Nav() {
           boxShadow: scrolled ? '0 4px 24px rgba(24,24,27,0.07)' : '0 2px 12px rgba(24,24,27,0.04)',
         }}
       >
-        <nav className="h-11 sm:h-12 md:h-13 px-3 sm:px-4 md:px-5 flex items-center gap-2 sm:gap-4 md:gap-6">
+        <nav className="h-12 sm:h-12 md:h-13 px-5 sm:px-4 md:px-5 flex items-center gap-5 sm:gap-4 md:gap-6">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={(e) => scrollToSection(l.href.slice(1), e)}
-              className="text-[11px] sm:text-xs md:text-sm whitespace-nowrap transition-colors duration-200"
+              className="text-[15px] sm:text-xs md:text-sm whitespace-nowrap transition-colors duration-200"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif' }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#18181B')}
               onMouseLeave={(e) => (e.currentTarget.style.color = '#A1A1AA')}
@@ -452,7 +452,7 @@ function Hero() {
               className="text-base md:text-lg leading-relaxed mb-8"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              Computer Science Engineering student specializing in Data Intelligence, with experience in web development, databases, and process digitalization. Interested in software development, cloud computing, and data.
+              Computer Science Engineering student Specialized in Data Intelligence, with experience in web development, databases, and process digitalization. Interested in software development, cloud computing, and data.
             </p>
 
             <div className="flex items-center gap-6">
