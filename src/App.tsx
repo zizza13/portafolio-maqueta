@@ -94,14 +94,15 @@ const PROJECTS: Project[] = [
     problem:
       'E-waste management at the university center lacked a traceability system: there was no structured way to record impact metrics or classify components during diagnosis and disassembly.',
     solution:
-      'As project lead, I designed and coordinated a circular-economy lab focused on e-waste management and logical hardware diagnosis. I built an automated traceability system ("Control Station") with input validation to record impact metrics and classify components, coordinating a four-person technical team across the disassembly and Clean Zone areas.',
+      'As project lead, I designed and coordinated a circular-economy lab focused on e-waste management and logical hardware diagnosis. I built an automated traceability system, "Control Station," with input validation to record impact metrics and classify components, coordinating a technical team across the disassembly and Clean Zone areas.',
     results: [
-      'Traceability system (Control Station) in operation',
-      'Four-person technical team coordinated across two areas',
+      'Capstone project (thesis as an intervention project)',
+      'Full documentation of a university scale project',
+      'Technical team coordinated across two areas',
       'Impact metrics and component classification recorded in a structured way',
-      'Computer Science capstone project (thesis as an intervention project)',
+      'Traceability system (Control Station) in operation',
     ],
-    tech: ['JavaScript', 'HTML', 'CSS', 'Databases', 'Data validation'],
+    tech: ['Project Management', 'Data Traceability', 'Hardware Diagnostics', 'Process Automation', 'Data validation', 'Ciruclar Economy'],
     image: '/green_cut.png',
   },
   {
@@ -113,13 +114,14 @@ const PROJECTS: Project[] = [
     problem:
       'The product loading process at a bottling plant was recorded manually, resulting in slow data capture prone to operational errors.',
     solution:
-      'I digitalized the loading process through a database-driven web application, replacing manual data capture and reducing the associated operational errors.',
+      'I digitalized the loading process through a database driven web application, replacing manual data capture and reducing the associated operational errors.',
     results: [
+      'Full digitalization of an industrial workflow',
       'Processing time cut by 30–45%',
       'Manual data capture replaced by a digital workflow',
       'Operational errors reduced in the loading process',
     ],
-    tech: ['JavaScript', 'Databases', 'Web development'],
+    tech: ['JavaScript', 'HTML', 'CSS', 'Web Hosting', 'Databases', 'Web development'],
     image: 'photo-1553413077-190dd305871c',
   },
 ]
@@ -127,7 +129,7 @@ const PROJECTS: Project[] = [
 const SKILLS = [
   { category: 'Languages & Development', items: ['Python', 'JavaScript', 'HTML', 'CSS', 'Node.js', 'Express.js', 'React.js'] },
   { category: 'Databases', items: ['MariaDB', 'MySQL', 'PostgreSQL', 'MongoDB'] },
-  { category: 'Tools', items: ['Git', 'GitHub', 'GitLab', 'Docker', 'Power BI'] },
+  { category: 'Tools', items: ['Git', 'GitHub', 'GitLab', 'Docker', 'Power BI', 'Microsoft Office', 'Jira', 'Trello'] },
   { category: 'Areas of Interest', items: ['Cloud Computing', 'APIs', 'Machine Learning', 'Automation', 'Problem Solving'] },
 ]
 
@@ -464,7 +466,7 @@ function Hero() {
               className="text-lg md:text-xl font-medium mb-2"
               style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
             >
-              Computer Science Engineering Student
+              Computer Science Engineering
               <br />Specialized in Data Intelligence
             </p>
             <div className="w-8 h-px mt-4" style={{ backgroundColor: '#ff1731' }} />
@@ -475,7 +477,7 @@ function Hero() {
               className="text-base md:text-lg leading-relaxed mb-8"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              Computer Science Engineering student Specialized in Data Intelligence, with experience in web development, databases, and process digitalization. Interested in software development, cloud computing, and data.
+              Computer Science Engineering Specialized in Data Intelligence, with experience in web development, databases, and process digitalization. Interested in software development, cloud computing, and data.
             </p>
 
             <div className="flex items-center gap-6">
@@ -510,8 +512,8 @@ function Hero() {
         >
           {[
             { num: '2026', label: 'Graduation (UDG)' },
-            { num: '4', label: 'Technical projects' },
-            { num: '2', label: 'AWS certifications' },
+            { num: '+5', label: 'Technical projects' },
+            { num: '3', label: 'AWS certifications' },
           ].map((m) => (
             <div key={m.label}>
               <p
@@ -796,7 +798,7 @@ function About() {
             className="text-3xl md:text-4xl font-bold mb-8"
             style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
           >
-            Computer Science Engineering Student Specialized in Data Intelligence
+            Computer Science Engineering Specialized in Data Intelligence
           </h2>
 
           <div className="space-y-4 mb-10">
@@ -804,16 +806,17 @@ function About() {
               className="text-base leading-relaxed"
               style={{ color: '#18181B', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              I'm a Computer Science Engineering student specializing in Data Intelligence at
-              the University of Guadalajara. I have experience in web development, databases,
+              I'm a Computer Science Engineering specializing in Data Intelligence at
+              the University of Guadalajara. I have experience in project management, 
+              web development, databases, app development,
               and process digitalization, and I'm interested in going deeper into software
-              development, cloud computing, and data.
+              development, cloud computing, and data analytics.
             </p>
             <p
               className="text-base leading-relaxed"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              I've applied what I learn to real projects: from a published Chrome extension to
+              I've applied what I learn to real projects: from working for an international company to
               an e-waste management capstone project where I led a technical team. I'm a
               structured problem-solver and a fast learner.
             </p>
