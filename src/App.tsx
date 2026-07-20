@@ -24,6 +24,29 @@ const PROJECTS: Project[] = [
     id: 1,
     tag: 'Published Product',
     year: '2026',
+    title: 'Tu Recordatorio Médico | mobile app',
+    subtitle: 'Flutter medication reminder app with dual-path, fail-safe alarm scheduling',
+    problem:
+      'Standard reminder apps rely on a single notification channel, which OEM battery optimizers routinely kill in the background, silently dropping alerts, missing them entirely after a device reboot. For a medication adherence app, a missed reminder isn’t an inconvenience,  it can mean a failed treatment.',
+    solution:
+      'I built a dual path alarm architecture: every dose is scheduled through both a plugin based alarm engine and Android’s native AlarmManager as a redundant backup, so alarms survive reboots, background restrictions, and OEM battery killers. Alarms fire as a full screen. It also has stock tracking with low stock warnings, home screen widgets showing the next dose. The app runs entirely on device: no backend, no Internet permission, zero data ever leaves the phone.',
+    results: [
+      'V1 fully functional and feature complete',
+      'alarm system survives device reboot, background app restriction, and OEM battery optimization',
+      '124 automated tests covering scheduling edge cases',
+      'frequency math, alarm collision resolution, snooze protection',
+      'Zero data collection: 100% local persistence',
+      'Home screen widgets + swipeable weekly adherence tracking'
+    ],
+    tech: ['Flutter', 'Dart', 'Kotlin', 'Android', 'AlarmManager'],
+    image: '/tu_recordatorio_medico.png',
+    //link: 'https://chromewebstore.google.com/detail/pomodoro-focus-pro/cplgofhaeomhmegoiolefancgajicmof',
+    //linkLabel: 'Get it on the Chrome Web Store →',
+  },
+  {
+    id: 2,
+    tag: 'Published Product',
+    year: '2026',
     title: 'Pomodoro Focus Pro | Chrome Extension',
     subtitle: 'Manifest V3 productivity extension published on the Chrome Web Store',
     problem:
@@ -42,7 +65,7 @@ const PROJECTS: Project[] = [
     linkLabel: 'Get it on the Chrome Web Store →',
   },
   {
-    id: 2,
+    id: 3,
     tag: 'Web Development',
     year: '2026',
     title: 'Fierro Mateco | Corporate Landing Page',
@@ -63,7 +86,7 @@ const PROJECTS: Project[] = [
     linkLabel: 'View Live Demo →',
   },
   {
-    id: 3,
+    id: 4,
     tag: 'Capstone Project — Project Lead',
     year: '2026',
     title: 'Green CUT | E-waste Management System',
@@ -82,7 +105,7 @@ const PROJECTS: Project[] = [
     image: '/green_cut.png',
   },
   {
-    id: 4,
+    id: 5,
     tag: 'Process Digitalization',
     year: '2024',
     title: 'Grupo Modelo | Product Loading Digitalization',
