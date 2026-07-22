@@ -1075,6 +1075,10 @@ function Footer() {
 // ─── App ──────────────────────────────────────────────────────────────────────
 
 export default function App() {
+  if (window.location.pathname === '/trmapp') {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '3rem' }}>:)</div>
+  }
+
   return (
     <div style={{ backgroundColor: '#F4F4F5', minHeight: '100vh' }}>
       <Nav />
