@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import TrmApp from './TrmApp'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -1076,7 +1077,7 @@ function Footer() {
 
 export default function App() {
   if (window.location.pathname === '/trmapp') {
-    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '3rem' }}>:)</div>
+    return <TrmApp />
   }
 
   return (
