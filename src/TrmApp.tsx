@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 export default function TrmApp() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -14,7 +14,7 @@ export default function TrmApp() {
   return (
     <div className="min-h-screen font-sans" style={{ backgroundColor: '#F4F4F5', color: '#18181B' }}>
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#F4F4F5]/90 backdrop-blur-md border-b border-gray-200">
+      <header className="sticky top-0 z-50 bg-page-bg/90 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
@@ -35,7 +35,7 @@ export default function TrmApp() {
           className="w-full max-w-2xl h-48 sm:h-64 md:h-80 object-cover rounded-3xl mb-8 border border-gray-300 shadow-sm" 
         />
         
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-[#18181B]">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-ink">
           Tu Recordatorio Médico
         </h1>
         <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl">
@@ -183,7 +183,7 @@ export default function TrmApp() {
       {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 cursor-pointer backdrop-blur-sm"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 cursor-pointer backdrop-blur-sm"
           onClick={() => setSelectedImage(null)}
         >
           <img 

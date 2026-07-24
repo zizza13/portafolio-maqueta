@@ -46,6 +46,25 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
+    tag: 'Process Digitalization',
+    year: '2024',
+    title: 'Grupo Modelo | Product Loading Digitalization',
+    subtitle: 'Web application to digitalize the loading process at a bottling plant',
+    problem:
+      'The product loading process at a bottling plant was recorded manually, resulting in slow data capture prone to operational errors.',
+    solution:
+      'I digitalized the loading process through a database driven web application, replacing manual data capture and reducing the associated operational errors.',
+    results: [
+      'Full digitalization of an industrial workflow',
+      'Processing time cut by 30–45%',
+      'Manual data capture replaced by a digital workflow',
+      'Operational errors reduced in the loading process',
+    ],
+    tech: ['JavaScript', 'HTML', 'CSS', 'Web Hosting', 'Databases', 'Web development'],
+    image: 'photo-1553413077-190dd305871c',
+  },
+  {
+    id: 3,
     tag: 'Published Product',
     year: '2026',
     title: 'Pomodoro Focus Pro | Chrome Extension',
@@ -66,7 +85,7 @@ const PROJECTS: Project[] = [
     linkLabel: 'Get it on the Chrome Web Store →',
   },
   {
-    id: 3,
+    id: 4,
     tag: 'Web Development',
     year: '2026',
     title: 'Fierro Mateco | Corporate Landing Page',
@@ -87,7 +106,7 @@ const PROJECTS: Project[] = [
     linkLabel: 'View Live Demo →',
   },
   {
-    id: 4,
+    id: 5,
     tag: 'Capstone Project — Project Lead',
     year: '2026',
     title: 'Green CUT | E-waste Management System',
@@ -105,25 +124,6 @@ const PROJECTS: Project[] = [
     ],
     tech: ['Project Management', 'Data Traceability', 'Hardware Diagnostics', 'Process Automation', 'Data validation', 'Ciruclar Economy'],
     image: '/green_cut.png',
-  },
-  {
-    id: 5,
-    tag: 'Process Digitalization',
-    year: '2024',
-    title: 'Grupo Modelo | Product Loading Digitalization',
-    subtitle: 'Web application to digitalize the loading process at a bottling plant',
-    problem:
-      'The product loading process at a bottling plant was recorded manually, resulting in slow data capture prone to operational errors.',
-    solution:
-      'I digitalized the loading process through a database driven web application, replacing manual data capture and reducing the associated operational errors.',
-    results: [
-      'Full digitalization of an industrial workflow',
-      'Processing time cut by 30–45%',
-      'Manual data capture replaced by a digital workflow',
-      'Operational errors reduced in the loading process',
-    ],
-    tech: ['JavaScript', 'HTML', 'CSS', 'Web Hosting', 'Databases', 'Web development'],
-    image: 'photo-1553413077-190dd305871c',
   },
 ]
 
@@ -589,7 +589,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
 
             <h3
-              className="text-xl md:text-2xl lg:text-3xl font-semibold leading-tight mb-2 group-hover:text-[#ff1731] transition-colors duration-200"
+              className="text-xl md:text-2xl lg:text-3xl font-semibold leading-tight mb-2 group-hover:text-accent transition-colors duration-200"
               style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#18181B' }}
             >
               {project.title}
