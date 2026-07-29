@@ -41,8 +41,8 @@ const PROJECTS: Project[] = [
     ],
     tech: ['Flutter', 'Dart', 'Kotlin', 'Android', 'AlarmManager'],
     image: '/tu_recordatorio_medico.png',
-    //link: 'https://chromewebstore.google.com/detail/pomodoro-focus-pro/cplgofhaeomhmegoiolefancgajicmof',
-    //linkLabel: 'Get it on the Chrome Web Store →',
+    link: 'https://chromewebstore.google.com/detail/pomodoro-focus-pro/cplgofhaeomhmegoiolefancgajicmof',
+    linkLabel: 'Live Demo →',
   },
   {
     id: 2,
@@ -507,7 +507,7 @@ function Hero() {
         </div>
 
         {/* Bottom row: metrics */}
-        <div
+        {/* <div
           className="mt-10 md:mt-16 pt-8 grid grid-cols-3 gap-3 sm:gap-4"
           style={{ borderTop: '1px solid rgba(24,24,27,0.08)' }}
         >
@@ -528,7 +528,7 @@ function Hero() {
               </p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )
@@ -915,11 +915,11 @@ function Contact() {
     padding: '12px 0',
     backgroundColor: 'transparent',
     border: 'none',
-    borderBottom: '1px solid rgba(24,24,27,0.15)',
+    borderBottom: '1px solid rgba(255,255,255,0.15)',
     outline: 'none',
     fontSize: '0.9375rem',
     fontFamily: 'DM Sans, sans-serif',
-    color: '#18181B',
+    color: '#F4F4F5',
   }
 
   return (
@@ -947,14 +947,14 @@ function Contact() {
               className="text-base leading-relaxed mb-10"
               style={{ color: '#A1A1AA', fontFamily: 'DM Sans, sans-serif', fontWeight: 300 }}
             >
-              Tell me about your project. I respond within 24 hours.
+              Tell me about it.
             </p>
 
             <div className="space-y-4">
               {[
-                { label: 'Email', value: 'ctn0213@outlook.com' },
-                { label: 'Phone', value: '+52 33 2237 5389' },
-                { label: 'LinkedIn', value: 'linkedin.com/in/cesar-terrazas-nava' },
+                { label: 'Email', value: 'ctn0213@outlook.com', href: 'mailto:ctn0213@outlook.com' },
+                { label: 'Phone', value: '+52 33 2237 5389', href: 'tel:+523322375389' },
+                { label: 'LinkedIn', value: 'linkedin.com/in/cesar-terrazas-nava', href: 'https://linkedin.com/in/cesar-terrazas-nava', target: '_blank' },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-4">
                   <span
@@ -963,12 +963,15 @@ function Contact() {
                   >
                     {c.label}
                   </span>
-                  <span
-                    className="text-sm"
+                  <a
+                    href={c.href}
+                    target={c.target}
+                    rel={c.target === '_blank' ? 'noopener noreferrer' : undefined}
+                    className="text-sm transition-colors duration-200 hover:text-red-500 hover:underline"
                     style={{ color: '#F4F4F5', fontFamily: 'DM Sans, sans-serif' }}
                   >
                     {c.value}
-                  </span>
+                  </a>
                 </div>
               ))}
             </div>
@@ -1012,7 +1015,7 @@ function Contact() {
                       onChange={(e) => setFormState({ ...formState, [f.id]: e.target.value })}
                       style={inputStyle}
                       onFocus={(e) => (e.target.style.borderBottomColor = '#ff1731')}
-                      onBlur={(e) => (e.target.style.borderBottomColor = 'rgba(24,24,27,0.15)')}
+                      onBlur={(e) => (e.target.style.borderBottomColor = 'rgba(255,255,255,0.15)')}
                     />
                   </div>
                 ))}
@@ -1034,7 +1037,7 @@ function Contact() {
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     style={{ ...inputStyle, resize: 'none' }}
                     onFocus={(e) => (e.target.style.borderBottomColor = '#ff1731')}
-                    onBlur={(e) => (e.target.style.borderBottomColor = 'rgba(24,24,27,0.15)')}
+                    onBlur={(e) => (e.target.style.borderBottomColor = 'rgba(255,255,255,0.15)')}
                   />
                 </div>
 
