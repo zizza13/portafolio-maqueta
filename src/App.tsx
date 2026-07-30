@@ -41,7 +41,7 @@ const PROJECTS: Project[] = [
     ],
     tech: ['Flutter', 'Dart', 'Kotlin', 'Android', 'AlarmManager'],
     image: '/tu_recordatorio_medico.png',
-    link: 'https://chromewebstore.google.com/detail/pomodoro-focus-pro/cplgofhaeomhmegoiolefancgajicmof',
+    link: 'https://turecordatoriomedico.cesarterrazas.com',
     linkLabel: 'Live Demo →',
   },
   {
